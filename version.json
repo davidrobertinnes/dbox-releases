@@ -1,5 +1,5 @@
 {
-  "version": "1.0.3",
-  "notes": "licensing and code housekeeping",
+  "version": "1.0.4",
+  "notes": "Fix update flow, fix shutdown process, add help files, add non value lines to invoices",
   "url": "https://github.com/davidrobertinnes/dbox-releases/raw/main/dbox.zip"
 }
