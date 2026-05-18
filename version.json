@@ -1,5 +1,5 @@
 {
-  "version": "1.0.4",
-  "notes": "stability fixes, restoring lost reatures",
+  "version": "1.0.5",
+  "notes": "Release 1.0.5: bank rec split categorisation, job card PDF, work tasks \u2192 invoice, quote GL accounts + comment lines, browser lifecycle fixes",
   "url": "https://github.com/davidrobertinnes/dbox-releases/raw/main/dbox.zip"
 }
