@@ -1,21 +1,21 @@
-# Dogbox Securities — Windows Installer
+# Dogbox Investments — Windows Installer
 # Downloads the latest release from GitHub and installs.
 #
 # One-liner (paste into PowerShell):
-#   irm https://raw.githubusercontent.com/davidrobertinnes/dbox-releases/main/install_dsec_stub.ps1 | iex
+#   irm https://raw.githubusercontent.com/davidrobertinnes/dbox-releases/main/install_dinv_stub.ps1 | iex
 #
 # Or: right-click this file → Run with PowerShell
 
 $ErrorActionPreference = "Stop"
 
 $ZipUrl  = "https://github.com/davidrobertinnes/sharetrack/archive/refs/heads/main.zip"
-$Dest    = Join-Path $env:USERPROFILE "DogboxSecurities"
-$TmpZip  = Join-Path $env:TEMP "dsec_install.zip"
-$TmpDir  = Join-Path $env:TEMP "dsec_tmp"
+$Dest    = Join-Path $env:USERPROFILE "DogboxInvestments"
+$TmpZip  = Join-Path $env:TEMP "dinv_install.zip"
+$TmpDir  = Join-Path $env:TEMP "dinv_tmp"
 
 Write-Host ""
 Write-Host "  ============================================================"
-Write-Host "   Dogbox Securities - Installer"
+Write-Host "   Dogbox Investments - Installer"
 Write-Host "  ============================================================"
 Write-Host ""
 
@@ -33,7 +33,7 @@ try {
 
 # ── Download ──────────────────────────────────────────────────────────────────
 Write-Host ""
-Write-Host "  Downloading Dogbox Securities..."
+Write-Host "  Downloading Dogbox Investments..."
 try {
     Invoke-WebRequest -Uri $ZipUrl -OutFile $TmpZip -UseBasicParsing
 } catch {
@@ -83,7 +83,7 @@ try {
 }
 
 # ── Create launcher ───────────────────────────────────────────────────────────
-$LauncherBat = Join-Path $Dest "DogboxSecurities.bat"
+$LauncherBat = Join-Path $Dest "DogboxInvestments.bat"
 @"
 @echo off
 cd /d "%~dp0"
@@ -93,10 +93,10 @@ start "" pythonw web_server.py
 # Desktop shortcut
 try {
     $WshShell  = New-Object -ComObject WScript.Shell
-    $Shortcut  = $WshShell.CreateShortcut("$env:USERPROFILE\Desktop\Dogbox Securities.lnk")
+    $Shortcut  = $WshShell.CreateShortcut("$env:USERPROFILE\Desktop\Dogbox Investments.lnk")
     $Shortcut.TargetPath       = $LauncherBat
     $Shortcut.WorkingDirectory = $Dest
-    $Shortcut.Description      = "Dogbox Securities — Share portfolio CGT tracking"
+    $Shortcut.Description      = "Dogbox Investments — Investment portfolio CGT tracking"
     $Shortcut.Save()
     Write-Host "  [  OK  ] Desktop shortcut created."
 } catch {
@@ -108,8 +108,8 @@ Write-Host ""
 Write-Host "  ============================================================"
 Write-Host "   Installation complete!"
 Write-Host ""
-Write-Host "   Launch:  double-click 'Dogbox Securities' on your Desktop"
-Write-Host "       or:  run DogboxSecurities.bat in $Dest"
+Write-Host "   Launch:  double-click 'Dogbox Investments' on your Desktop"
+Write-Host "       or:  run DogboxInvestments.bat in $Dest"
 Write-Host "  ============================================================"
 Write-Host ""
 Read-Host "  Press Enter to close"

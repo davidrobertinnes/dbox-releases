@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
-# Dogbox Securities — macOS / Linux Installer
+# Dogbox Investments — macOS / Linux Installer
 # Downloads the latest release from GitHub and installs.
 #
 # macOS one-liner (paste into Terminal):
-#   curl -fsSL https://raw.githubusercontent.com/davidrobertinnes/dbox-releases/main/install_dsec_stub.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/davidrobertinnes/dbox-releases/main/install_dinv_stub.sh | bash
 #
 # Linux one-liner:
-#   curl -fsSL https://raw.githubusercontent.com/davidrobertinnes/dbox-releases/main/install_dsec_stub.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/davidrobertinnes/dbox-releases/main/install_dinv_stub.sh | bash
 #
-# Or: chmod +x install_dsec_stub.sh && ./install_dsec_stub.sh
+# Or: chmod +x install_dinv_stub.sh && ./install_dinv_stub.sh
 
 ZIP_URL="https://github.com/davidrobertinnes/sharetrack/archive/refs/heads/main.zip"
-DEST="$HOME/DogboxSecurities"
-TMP_ZIP="/tmp/dsec_install_$$.zip"
-TMP_DIR="/tmp/dsec_tmp_$$"
+DEST="$HOME/DogboxInvestments"
+TMP_ZIP="/tmp/dinv_install_$$.zip"
+TMP_DIR="/tmp/dinv_tmp_$$"
 
 BOLD='\033[1m'
 GREEN='\033[0;32m'
@@ -23,7 +23,7 @@ RESET='\033[0m'
 
 echo ""
 echo -e "${BOLD}  ============================================================${RESET}"
-echo -e "${BOLD}   Dogbox Securities - Installer${RESET}"
+echo -e "${BOLD}   Dogbox Investments - Installer${RESET}"
 echo -e "${BOLD}  ============================================================${RESET}"
 echo ""
 
@@ -50,7 +50,7 @@ fi
 
 # ── Download ──────────────────────────────────────────────────────────────────
 echo ""
-echo "  Downloading Dogbox Securities..."
+echo "  Downloading Dogbox Investments..."
 if command -v curl &>/dev/null; then
     if ! curl -fsSL "$ZIP_URL" -o "$TMP_ZIP"; then
         echo -e "${RED}  [ERROR ]${RESET} Download failed. Check your internet connection."
@@ -114,7 +114,7 @@ OS="$(uname -s)"
 
 if [ "$OS" = "Darwin" ]; then
     # macOS: .command file is double-clickable in Finder
-    MACOS_LAUNCHER="$DEST/DogboxSecurities.command"
+    MACOS_LAUNCHER="$DEST/DogboxInvestments.command"
     cat > "$MACOS_LAUNCHER" << EOF
 #!/usr/bin/env bash
 cd "\$(dirname "\$0")"
@@ -123,7 +123,7 @@ EOF
     chmod +x "$MACOS_LAUNCHER"
 
     # Desktop alias
-    DESKTOP_LINK="$HOME/Desktop/Dogbox Securities.command"
+    DESKTOP_LINK="$HOME/Desktop/Dogbox Investments.command"
     cp "$MACOS_LAUNCHER" "$DESKTOP_LINK"
     chmod +x "$DESKTOP_LINK"
     echo -e "${GREEN}  [  OK  ]${RESET} Desktop shortcut created."
@@ -135,8 +135,8 @@ echo -e "${BOLD}  ============================================================${
 echo -e "${BOLD}   Installation complete!${RESET}"
 echo ""
 if [ "$OS" = "Darwin" ]; then
-    echo "   Launch:  double-click 'Dogbox Securities' on your Desktop"
-    echo "       or:  open $DEST/DogboxSecurities.command"
+    echo "   Launch:  double-click 'Dogbox Investments' on your Desktop"
+    echo "       or:  open $DEST/DogboxInvestments.command"
 else
     echo "   Launch:  bash $DEST/run.sh"
 fi
