@@ -8,7 +8,7 @@
 
 $ErrorActionPreference = "Stop"
 
-$ZipUrl  = "https://github.com/davidrobertinnes/sharetrack/archive/refs/heads/main.zip"
+$ZipUrl  = "https://github.com/davidrobertinnes/dbox-investments/archive/refs/heads/main.zip"
 $Dest    = Join-Path $env:USERPROFILE "DogboxInvestments"
 $TmpZip  = Join-Path $env:TEMP "dinv_install.zip"
 $TmpDir  = Join-Path $env:TEMP "dinv_tmp"
@@ -61,8 +61,8 @@ try {
 }
 Remove-Item $TmpZip -Force -ErrorAction SilentlyContinue
 
-# GitHub archive unpacks as sharetrack-main/
-$Inner = Join-Path $TmpDir "sharetrack-main"
+# GitHub archive unpacks as dbox-investments-main/
+$Inner = Join-Path $TmpDir "dbox-investments-main"
 if (-not (Test-Path $Inner)) {
     # Fall back to first subfolder if naming differs
     $Inner = (Get-ChildItem $TmpDir -Directory | Select-Object -First 1).FullName
