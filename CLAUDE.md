@@ -10,8 +10,9 @@ Release hosting for the Dogbox app. GitHub serves the raw files; the app's
 auto-updater and install scripts fetch from here.
 
 Related repos:
-- **dbox** (`../dbox`) — the app source; releases are built from there
+- **dbox** (`../dbox`) — the Dogbox Accounting app source; releases are built from there
 - **dbox-website** (`../dbox-website`) — marketing website
+- **sharetrack** (`../sharetrack`) — Dogbox Investments app; `install_dinv_stub.*` files in this repo relate to it
 
 ---
 
