@@ -8,10 +8,9 @@
 
 $ErrorActionPreference = "Stop"
 
-$ZipUrl  = "https://github.com/davidrobertinnes/dbox-investments/archive/refs/heads/main.zip"
+$ZipUrl  = "https://github.com/davidrobertinnes/dbox-releases/raw/main/dinv.zip"
 $Dest    = Join-Path $env:USERPROFILE "DogboxInvestments"
 $TmpZip  = Join-Path $env:TEMP "dinv_install.zip"
-$TmpDir  = Join-Path $env:TEMP "dinv_tmp"
 
 Write-Host ""
 Write-Host "  ============================================================"
@@ -50,25 +49,14 @@ if (Test-Path $Dest) {
     Write-Host "  [ WARN ] $Dest already exists — files will be updated."
     Remove-Item $Dest -Recurse -Force -ErrorAction SilentlyContinue
 }
-if (Test-Path $TmpDir) { Remove-Item $TmpDir -Recurse -Force }
-
 try {
-    Expand-Archive -Path $TmpZip -DestinationPath $TmpDir -Force
+    Expand-Archive -Path $TmpZip -DestinationPath $Dest -Force
 } catch {
     Write-Host "  [ERROR ] Extraction failed: $_"
     Read-Host "  Press Enter to exit"
     exit 1
 }
 Remove-Item $TmpZip -Force -ErrorAction SilentlyContinue
-
-# GitHub archive unpacks as dbox-investments-main/
-$Inner = Join-Path $TmpDir "dbox-investments-main"
-if (-not (Test-Path $Inner)) {
-    # Fall back to first subfolder if naming differs
-    $Inner = (Get-ChildItem $TmpDir -Directory | Select-Object -First 1).FullName
-}
-Move-Item $Inner $Dest
-Remove-Item $TmpDir -Recurse -Force -ErrorAction SilentlyContinue
 Write-Host "  [  OK  ] Extracted."
 
 # ── Install Python dependencies ───────────────────────────────────────────────

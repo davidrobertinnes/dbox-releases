@@ -10,10 +10,9 @@
 #
 # Or: chmod +x install_dinv_stub.sh && ./install_dinv_stub.sh
 
-ZIP_URL="https://github.com/davidrobertinnes/dbox-investments/archive/refs/heads/main.zip"
+ZIP_URL="https://github.com/davidrobertinnes/dbox-releases/raw/main/dinv.zip"
 DEST="$HOME/DogboxInvestments"
 TMP_ZIP="/tmp/dinv_install_$$.zip"
-TMP_DIR="/tmp/dinv_tmp_$$"
 
 BOLD='\033[1m'
 GREEN='\033[0;32m'
@@ -74,21 +73,13 @@ if [ -d "$DEST" ]; then
     rm -rf "$DEST"
 fi
 
-mkdir -p "$TMP_DIR"
-if ! unzip -q -o "$TMP_ZIP" -d "$TMP_DIR"; then
+mkdir -p "$DEST"
+if ! unzip -q -o "$TMP_ZIP" -d "$DEST"; then
     echo -e "${RED}  [ERROR ]${RESET} Extraction failed."
     rm -f "$TMP_ZIP"
     exit 1
 fi
 rm -f "$TMP_ZIP"
-
-# GitHub archive unpacks as dbox-investments-main/
-INNER="$TMP_DIR/dbox-investments-main"
-if [ ! -d "$INNER" ]; then
-    INNER=$(find "$TMP_DIR" -mindepth 1 -maxdepth 1 -type d | head -1)
-fi
-mv "$INNER" "$DEST"
-rm -rf "$TMP_DIR"
 echo -e "${GREEN}  [  OK  ]${RESET} Extracted."
 
 # ── Install Python dependencies ───────────────────────────────────────────────
