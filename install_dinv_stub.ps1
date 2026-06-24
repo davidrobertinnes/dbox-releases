@@ -80,15 +80,16 @@ start "" pythonw web_server.py
 
 # Desktop shortcut
 try {
+    $Desktop   = [System.Environment]::GetFolderPath('Desktop')
     $WshShell  = New-Object -ComObject WScript.Shell
-    $Shortcut  = $WshShell.CreateShortcut("$env:USERPROFILE\Desktop\Dogbox Investments.lnk")
+    $Shortcut  = $WshShell.CreateShortcut("$Desktop\Dogbox Investments.lnk")
     $Shortcut.TargetPath       = $LauncherBat
     $Shortcut.WorkingDirectory = $Dest
-    $Shortcut.Description      = "Dogbox Investments — Investment portfolio CGT tracking"
+    $Shortcut.Description      = "Dogbox Investments"
     $Shortcut.Save()
     Write-Host "  [  OK  ] Desktop shortcut created."
 } catch {
-    Write-Host "  [ WARN ] Could not create desktop shortcut."
+    Write-Host "  [ WARN ] Could not create desktop shortcut: $_"
 }
 
 # ── Done ──────────────────────────────────────────────────────────────────────
