@@ -20,15 +20,18 @@ Write-Host ""
 
 # ── Check Python ──────────────────────────────────────────────────────────────
 Write-Host "  Checking Python..."
-try {
-    $pyVer = & python --version 2>&1
-    Write-Host "  [  OK  ] $pyVer"
-} catch {
+$PythonExe = (Get-Command python -ErrorAction SilentlyContinue).Source
+if (-not $PythonExe) {
     Write-Host "  [ERROR ] Python not found."
     Write-Host "           Download Python 3.10+ from https://python.org and re-run."
     Read-Host "  Press Enter to exit"
     exit 1
 }
+$pyVer = & python --version 2>&1
+Write-Host "  [  OK  ] $pyVer"
+# pythonw.exe is in the same directory as python.exe — no console window when launching
+$PythonW = Join-Path (Split-Path $PythonExe) 'pythonw.exe'
+if (-not (Test-Path $PythonW)) { $PythonW = $PythonExe }
 
 # ── Download ──────────────────────────────────────────────────────────────────
 Write-Host ""
@@ -75,15 +78,16 @@ $LauncherBat = Join-Path $Dest "DogboxInvestments.bat"
 @"
 @echo off
 cd /d "%~dp0"
-start "" pythonw web_server.py
+python web_server.py
 "@ | Set-Content $LauncherBat -Encoding ASCII
 
-# Desktop shortcut
+# Desktop shortcut — points directly to pythonw.exe so no cmd window appears
 try {
     $Desktop   = [System.Environment]::GetFolderPath('Desktop')
     $WshShell  = New-Object -ComObject WScript.Shell
     $Shortcut  = $WshShell.CreateShortcut("$Desktop\Dogbox Investments.lnk")
-    $Shortcut.TargetPath       = $LauncherBat
+    $Shortcut.TargetPath       = $PythonW
+    $Shortcut.Arguments        = "`"$(Join-Path $Dest 'web_server.py')`""
     $Shortcut.WorkingDirectory = $Dest
     $Shortcut.Description      = "Dogbox Investments"
     $Shortcut.Save()
