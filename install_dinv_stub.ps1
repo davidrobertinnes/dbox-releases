@@ -29,9 +29,10 @@ if (-not $PythonExe) {
 }
 $pyVer = & python --version 2>&1
 Write-Host "  [  OK  ] $pyVer"
-# Use the Python Launcher — same fixed path used by the working Dogbox Accounting shortcut
-if     (Test-Path 'C:\Windows\py.exe')  { $Launcher = 'C:\Windows\py.exe'  }
-else   { $Launcher = $PythonExe }
+# Use pythonw.exe from the SAME directory as the resolved python.exe so we launch with
+# the exact Python that pip installed to (no console window, no version dispatch via py.exe)
+$PythonW = Join-Path (Split-Path $PythonExe) 'pythonw.exe'
+if (-not (Test-Path $PythonW)) { $PythonW = $PythonExe }
 
 # ── Download ──────────────────────────────────────────────────────────────────
 Write-Host ""
@@ -86,7 +87,7 @@ try {
     $Desktop   = [System.Environment]::GetFolderPath('Desktop')
     $WshShell  = New-Object -ComObject WScript.Shell
     $Shortcut  = $WshShell.CreateShortcut("$Desktop\Dogbox Investments.lnk")
-    $Shortcut.TargetPath       = $Launcher
+    $Shortcut.TargetPath       = $PythonW
     $Shortcut.Arguments        = "`"$(Join-Path $Dest 'web_server.py')`""
     $Shortcut.WorkingDirectory = $Dest
     $Shortcut.Description      = "Dogbox Investments"
