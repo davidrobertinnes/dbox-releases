@@ -29,9 +29,13 @@ if (-not $PythonExe) {
 }
 $pyVer = & python --version 2>&1
 Write-Host "  [  OK  ] $pyVer"
-# pythonw.exe is in the same directory as python.exe — no console window when launching
-$PythonW = Join-Path (Split-Path $PythonExe) 'pythonw.exe'
-if (-not (Test-Path $PythonW)) { $PythonW = $PythonExe }
+# Use the Python Launcher (C:\Windows\pyw.exe / py.exe) — fixed location, works regardless of install path
+if     (Test-Path 'C:\Windows\pyw.exe') { $Launcher = 'C:\Windows\pyw.exe' }
+elseif (Test-Path 'C:\Windows\py.exe')  { $Launcher = 'C:\Windows\py.exe'  }
+else {
+    $Launcher = Join-Path (Split-Path $PythonExe) 'pythonw.exe'
+    if (-not (Test-Path $Launcher)) { $Launcher = $PythonExe }
+}
 
 # ── Download ──────────────────────────────────────────────────────────────────
 Write-Host ""
@@ -86,7 +90,7 @@ try {
     $Desktop   = [System.Environment]::GetFolderPath('Desktop')
     $WshShell  = New-Object -ComObject WScript.Shell
     $Shortcut  = $WshShell.CreateShortcut("$Desktop\Dogbox Investments.lnk")
-    $Shortcut.TargetPath       = $PythonW
+    $Shortcut.TargetPath       = $Launcher
     $Shortcut.Arguments        = "`"$(Join-Path $Dest 'web_server.py')`""
     $Shortcut.WorkingDirectory = $Dest
     $Shortcut.Description      = "Dogbox Investments"
