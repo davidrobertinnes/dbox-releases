@@ -20,17 +20,46 @@ Write-Host ""
 
 # ── Check Python ──────────────────────────────────────────────────────────────
 Write-Host "  Checking Python..."
-$PythonExe = (Get-Command python -ErrorAction SilentlyContinue).Source
+
+# Find a real Python — skip the Windows Store stub (WindowsApps), which is an
+# app execution alias that silently does nothing when called from a shortcut.
+$PythonExe = $null
+$candidates = @(
+    "$env:LOCALAPPDATA\Programs\Python\Python314\python.exe",
+    "$env:LOCALAPPDATA\Programs\Python\Python313\python.exe",
+    "$env:LOCALAPPDATA\Programs\Python\Python312\python.exe",
+    "$env:LOCALAPPDATA\Programs\Python\Python311\python.exe",
+    "$env:LOCALAPPDATA\Programs\Python\Python310\python.exe",
+    "C:\Python314\python.exe",
+    "C:\Python313\python.exe",
+    "C:\Python312\python.exe",
+    "C:\Python311\python.exe",
+    "C:\Python310\python.exe",
+    "$env:ProgramFiles\Python314\python.exe",
+    "$env:ProgramFiles\Python313\python.exe",
+    "$env:ProgramFiles\Python312\python.exe",
+    "$env:ProgramFiles\Python311\python.exe",
+    "$env:ProgramFiles\Python310\python.exe"
+)
+foreach ($c in $candidates) {
+    if (Test-Path $c) { $PythonExe = $c; break }
+}
+# Fall back to whatever 'python' resolves to, but skip WindowsApps stub
 if (-not $PythonExe) {
-    Write-Host "  [ERROR ] Python not found."
-    Write-Host "           Download Python 3.10+ from https://python.org and re-run."
+    $resolved = (Get-Command python -ErrorAction SilentlyContinue).Source
+    if ($resolved -and $resolved -notlike '*WindowsApps*') { $PythonExe = $resolved }
+}
+if (-not $PythonExe) {
+    Write-Host "  [ERROR ] Python 3.10+ not found."
+    Write-Host "           Download from https://python.org — tick 'Add python.exe to PATH'."
     Read-Host "  Press Enter to exit"
     exit 1
 }
-$pyVer = & python --version 2>&1
-Write-Host "  [  OK  ] $pyVer"
-# Use pythonw.exe from the SAME directory as the resolved python.exe so we launch with
-# the exact Python that pip installed to (no console window, no version dispatch via py.exe)
+$pyVer = & "$PythonExe" --version 2>&1
+Write-Host "  [  OK  ] $pyVer (at $PythonExe)"
+
+# Use pythonw.exe from the same directory — silent launch (no console window),
+# guaranteed same Python that pip installs to.
 $PythonW = Join-Path (Split-Path $PythonExe) 'pythonw.exe'
 if (-not (Test-Path $PythonW)) { $PythonW = $PythonExe }
 
@@ -67,7 +96,7 @@ Write-Host "  [  OK  ] Extracted."
 Write-Host ""
 Write-Host "  Installing Python packages (flask, reportlab)..."
 try {
-    & python -m pip install --quiet --upgrade flask reportlab
+    & "$PythonExe" -m pip install --quiet --upgrade flask reportlab
     Write-Host "  [  OK  ] Packages installed."
 } catch {
     Write-Host "  [ WARN ] pip install encountered an issue: $_"
