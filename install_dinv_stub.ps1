@@ -29,13 +29,9 @@ if (-not $PythonExe) {
 }
 $pyVer = & python --version 2>&1
 Write-Host "  [  OK  ] $pyVer"
-# Use the Python Launcher (C:\Windows\pyw.exe / py.exe) — fixed location, works regardless of install path
-if     (Test-Path 'C:\Windows\pyw.exe') { $Launcher = 'C:\Windows\pyw.exe' }
-elseif (Test-Path 'C:\Windows\py.exe')  { $Launcher = 'C:\Windows\py.exe'  }
-else {
-    $Launcher = Join-Path (Split-Path $PythonExe) 'pythonw.exe'
-    if (-not (Test-Path $Launcher)) { $Launcher = $PythonExe }
-}
+# Use the Python Launcher — same fixed path used by the working Dogbox Accounting shortcut
+if     (Test-Path 'C:\Windows\py.exe')  { $Launcher = 'C:\Windows\py.exe'  }
+else   { $Launcher = $PythonExe }
 
 # ── Download ──────────────────────────────────────────────────────────────────
 Write-Host ""
