@@ -95,6 +95,12 @@ Write-Host "  [  OK  ] Extracted."
 # ── Install Python dependencies ───────────────────────────────────────────────
 Write-Host ""
 Write-Host "  Installing Python packages (flask, reportlab)..."
+# Bootstrap pip if missing
+$pipCheck = & "$PythonExe" -m pip --version 2>&1
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "  [ INFO ] pip not found — bootstrapping..."
+    & "$PythonExe" -m ensurepip --upgrade 2>&1 | Out-Null
+}
 try {
     & "$PythonExe" -m pip install --quiet --upgrade flask reportlab
     Write-Host "  [  OK  ] Packages installed."
