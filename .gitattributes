@@ -1,0 +1,3 @@
+# Shell scripts must always use LF — CRLF shebangs break macOS/Linux execution
+*.sh      text eol=lf
+*.command text eol=lf

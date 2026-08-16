@@ -51,5 +51,7 @@ echo ""
 
 # ── Hand off to macOS installer ───────────────────────────────────────────────
 INSTALLER="$DEST/macinstall.sh"
+# Strip Windows CRLF line endings — zip was built on Windows so scripts may have \r
+sed -i '' 's/\r//' "$INSTALLER" 2>/dev/null || true
 chmod +x "$INSTALLER"
 exec "$INSTALLER"
