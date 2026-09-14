@@ -1,5 +1,5 @@
-{
-  "version": "2.3.2",
-  "url": "https://github.com/davidrobertinnes/dbox-releases/raw/main/dbox.zip",
-  "notes": "New in v2.3.2:\n\nLicensing redesign: no registration required to use the app. Unregistered users get the Free tier automatically. Registering unlocks a 6-month Pro trial (all modules including payroll). After trial: subscribe or stay on Free.\n\nBudget improvements: Net Profit row in all budget tables; unified single-table layout for budget vs actual report; budget tile moved to Financials hub.\n\nDashboard: window title shows company name; sidebar logo centred; upcoming jobs panel capped at 4 with scroll.\n\nTax return: embedded tax estimate panel appears inline when tax estimate is configured.\n\nBug fixes: payroll routes now correctly accessible on Pro/trial licences; job status correctly synced when stage changes via all code paths."
+﻿{
+    "url":  "https://github.com/davidrobertinnes/dbox-releases/raw/main/dbox.zip",
+    "version":  "2.3.3",
+    "notes":  "New in v2.3.2:\n\nLicensing redesign: no registration required to use the app. Unregistered users get the Free tier automatically. Registering unlocks a 6-month Pro trial (all modules including payroll). After trial: subscribe or stay on Free.\n\nBudget improvements: Net Profit row in all budget tables; unified single-table layout for budget vs actual report; budget tile moved to Financials hub.\n\nDashboard: window title shows company name; sidebar logo centred; upcoming jobs panel capped at 4 with scroll.\n\nTax return: embedded tax estimate panel appears inline when tax estimate is configured.\n\nBug fixes: payroll routes now correctly accessible on Pro/trial licences; job status correctly synced when stage changes via all code paths."
 }
