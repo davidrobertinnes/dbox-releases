@@ -1,5 +1,5 @@
-﻿{
-    "url":  "https://github.com/davidrobertinnes/dbox-releases/raw/main/dbox.zip",
-    "version":  "2.3.3",
-    "notes":  "New in v2.3.2:\n\nLicensing redesign: no registration required to use the app. Unregistered users get the Free tier automatically. Registering unlocks a 6-month Pro trial (all modules including payroll). After trial: subscribe or stay on Free.\n\nBudget improvements: Net Profit row in all budget tables; unified single-table layout for budget vs actual report; budget tile moved to Financials hub.\n\nDashboard: window title shows company name; sidebar logo centred; upcoming jobs panel capped at 4 with scroll.\n\nTax return: embedded tax estimate panel appears inline when tax estimate is configured.\n\nBug fixes: payroll routes now correctly accessible on Pro/trial licences; job status correctly synced when stage changes via all code paths."
+{
+    "url": "https://github.com/davidrobertinnes/dbox-releases/raw/main/dbox.zip",
+    "version": "2.3.4",
+    "notes": "v2.3.4 is a bug-fix release. Please update before lodging your BAS for the July-September quarter.\n\nBAS: credit notes and voided invoices now come off total sales (G1) and GST on sales (1A); voided bills come off GST on purchases (1B). On the cash basis, each payment now carries only its share of the GST, so invoices paid in instalments or reduced by a credit note are no longer overstated, and Point of Sale refunds come off in the period they are paid out.\n\nInvoices with several lines or a discount no longer post a journal that is 1c out of balance.\n\nNew company files can save items straight away without restarting Dogbox.\n\nIf you have already run a BAS for this quarter, run it again after updating."
 }
