@@ -25,8 +25,13 @@ Related repos:
 | `dbox.zip` | Latest release build |
 | `DogboxInstall.command` | macOS installer script |
 | `install_dbox.bat` | Windows installer script |
-| `install_stub.ps1 / .sh` | Lightweight install stubs |
-| `install_dinv_stub.ps1 / .sh` | Dogbox Investments install stubs |
+| `install_stub.sh` | Mac/Linux install stub (also in licence emails) |
+| `install_dinv_stub.sh` | Dogbox Investments Mac/Linux install stub |
+| `install_mailman_stub.sh` | Mailman Mac/Linux install stub |
+
+There are no PowerShell stubs: Windows installs use curl + tar `.bat` files
+(`install_dbox.bat` here; Investments and Mailman `.bat`s live on the website).
+Never add an `irm | iex` installer — Defender blocks it as Trojan:Win32/Commando.
 
 ---
 
