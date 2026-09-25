@@ -97,7 +97,7 @@ LAUNCHER="$DEST/run.sh"
 cat > "$LAUNCHER" << EOF
 #!/usr/bin/env bash
 cd "\$(dirname "\$0")"
-$PY web_server.py
+$PY invest.py
 EOF
 chmod +x "$LAUNCHER"
 
@@ -109,7 +109,7 @@ if [ "$OS" = "Darwin" ]; then
     cat > "$MACOS_LAUNCHER" << EOF
 #!/usr/bin/env bash
 cd "\$(dirname "\$0")"
-$PY web_server.py
+$PY invest.py
 EOF
     chmod +x "$MACOS_LAUNCHER"
 

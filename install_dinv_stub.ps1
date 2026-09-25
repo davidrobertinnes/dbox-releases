@@ -113,7 +113,7 @@ $LauncherBat = Join-Path $Dest "DogboxInvestments.bat"
 @"
 @echo off
 cd /d "%~dp0"
-python web_server.py
+python invest.py
 "@ | Set-Content $LauncherBat -Encoding ASCII
 
 # Desktop shortcut — points directly to pythonw.exe so no cmd window appears
@@ -122,7 +122,7 @@ try {
     $WshShell  = New-Object -ComObject WScript.Shell
     $Shortcut  = $WshShell.CreateShortcut("$Desktop\Dogbox Investments.lnk")
     $Shortcut.TargetPath       = $PythonW
-    $Shortcut.Arguments        = "`"$(Join-Path $Dest 'web_server.py')`""
+    $Shortcut.Arguments        = "`"$(Join-Path $Dest 'invest.py')`""
     $Shortcut.WorkingDirectory = $Dest
     $Shortcut.Description      = "Dogbox Investments"
     $Shortcut.Save()
