@@ -1,10 +1,9 @@
 # Dogbox Investments — Windows Installer
 # Downloads the latest release from GitHub and installs.
 #
-# One-liner (paste into PowerShell):
-#   irm https://raw.githubusercontent.com/davidrobertinnes/dbox-releases/main/install_dinv_stub.ps1 | iex
-#
-# Or: right-click this file → Run with PowerShell
+# Right-click this file → Run with PowerShell.
+# Website downloads use install_dinv.bat (curl + tar) instead — never pipe this
+# into iex: Defender blocks "irm | iex" as Trojan:Win32/Commando.
 
 $ErrorActionPreference = "Stop"
 
@@ -78,9 +77,9 @@ Write-Host "  [  OK  ] Downloaded."
 
 # ── Extract ───────────────────────────────────────────────────────────────────
 Write-Host "  Installing to $Dest ..."
+# Update in place — never delete $Dest: portfolio.dinv files live there.
 if (Test-Path $Dest) {
-    Write-Host "  [ WARN ] $Dest already exists — files will be updated."
-    Remove-Item $Dest -Recurse -Force -ErrorAction SilentlyContinue
+    Write-Host "  [ INFO ] $Dest already exists — files will be updated, portfolios kept."
 }
 try {
     Expand-Archive -Path $TmpZip -DestinationPath $Dest -Force

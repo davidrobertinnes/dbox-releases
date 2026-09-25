@@ -68,9 +68,9 @@ echo -e "${GREEN}  [  OK  ]${RESET} Downloaded."
 
 # ── Extract ───────────────────────────────────────────────────────────────────
 echo "  Installing to $DEST ..."
+# Update in place — never delete $DEST: portfolio.dinv files live there.
 if [ -d "$DEST" ]; then
-    echo -e "${YELLOW}  [ WARN ]${RESET} $DEST already exists — files will be updated."
-    rm -rf "$DEST"
+    echo "  [ INFO ] $DEST already exists — files will be updated, portfolios kept."
 fi
 
 mkdir -p "$DEST"
