@@ -1,5 +1,5 @@
 {
-    "url": "https://github.com/davidrobertinnes/dbox-releases/raw/main/dbox.zip",
-    "version": "2.3.4",
-    "notes": "v2.3.4 is a bug-fix release. Please update before lodging your BAS for the July-September quarter.\n\nBAS: credit notes and voided invoices now come off total sales (G1) and GST on sales (1A); voided bills come off GST on purchases (1B). On the cash basis, each payment now carries only its share of the GST, so invoices paid in instalments or reduced by a credit note are no longer overstated, and Point of Sale refunds come off in the period they are paid out.\n\nInvoices with several lines or a discount no longer post a journal that is 1c out of balance.\n\nNew company files can save items straight away without restarting Dogbox.\n\nIf you have already run a BAS for this quarter, run it again after updating."
+  "url": "https://github.com/davidrobertinnes/dbox-releases/raw/main/dbox.zip",
+  "version": "2.4.0",
+  "notes": "v2.4.0 adds Google Calendar sync, job visits and a claim builder.\n\nGoogle Calendar: connect a calendar in Settings and your Schedule syncs both ways, with jobs and visits on the same calendar.\n\nJobs: plan visits from the job's tasks, print a worksheet for the day, and record what got done. + New Claim builds a progress claim from that work, including part-done tasks, visit hours and materials, and nothing can be claimed twice.\n\nSchedule: month view, drag-and-drop rescheduling, standalone events, and Convert to Job.\n\nPoint of Sale (Tyro): split card-and-cash payments and refunds, surcharge refunds, and receipts for refunds, declines and cancellations.\n\nAlso: voiding an invoice frees what it billed, a fix for job numbers clashing, updated guides, and EULA 6.1 (payroll is not part of the Pro Trial)."
 }
