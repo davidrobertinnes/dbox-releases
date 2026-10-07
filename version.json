@@ -1,5 +1,5 @@
 {
   "url": "https://github.com/davidrobertinnes/dbox-releases/raw/main/dbox.zip",
-  "version": "2.4.0",
-  "notes": "v2.4.0 adds Google Calendar sync, job visits and a claim builder.\n\nGoogle Calendar: connect a calendar in Settings and your Schedule syncs both ways, with jobs and visits on the same calendar.\n\nJobs: plan visits from the job's tasks, print a worksheet for the day, and record what got done. + New Claim builds a progress claim from that work, including part-done tasks, visit hours and materials, and nothing can be claimed twice.\n\nSchedule: month view, drag-and-drop rescheduling, standalone events, and Convert to Job.\n\nPoint of Sale (Tyro): split card-and-cash payments and refunds, surcharge refunds, and receipts for refunds, declines and cancellations.\n\nAlso: voiding an invoice frees what it billed, a fix for job numbers clashing, updated guides, and EULA 6.1 (payroll is not part of the Pro Trial)."
+  "version": "2.4.1",
+  "notes": "v2.4.1 fixes Report a Bug and lets you see an account's transactions from the Chart of Accounts.\n\nReport a Bug (Settings → Help) works again. Reports had been failing with \"HTTP Error 401\"; they now go through the Dogbox licence server.\n\nChart of Accounts: click an account to see every transaction with a running balance. Pick This FY, Last FY, All or your own dates, open any journal entry, or download the list as CSV.\n\nAlso: an account's transactions from a start date with no end date no longer double-count earlier transactions."
 }
