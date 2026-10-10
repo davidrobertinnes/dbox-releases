@@ -1,3 +1,9 @@
 # Shell scripts must always use LF — CRLF shebangs break macOS/Linux execution
 *.sh      text eol=lf
 *.command text eol=lf
+
+# Batch files must always use CRLF — cmd.exe misreads labels/goto in LF files.
+# -text stores them as CRLF in the repo itself, so GitHub raw downloads get
+# CRLF too (eol=crlf alone only converts on checkout).
+*.bat -text
+*.cmd -text
