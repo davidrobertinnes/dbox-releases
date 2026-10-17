@@ -27,6 +27,8 @@ Related repos:
 | `install_dbox.bat` | Windows installer script |
 | `install_stub.sh` | Mac/Linux install stub (also in licence emails) |
 | `install_dinv_stub.sh` | Dogbox Investments Mac/Linux install stub |
+| `dinv.zip` | Dogbox Investments latest release build |
+| `dinv_version.json` | Dogbox Investments version manifest — read by its in-app updater (same schema as `version.json`, `url` points at `dinv.zip`) |
 | `install_mailman_stub.sh` | Mailman Mac/Linux install stub |
 
 There are no PowerShell stubs: Windows installs use curl + tar `.bat` files
@@ -59,3 +61,9 @@ Releases are cut from the `dbox` repo. Steps:
 4. Commit and push — the auto-updater polls `version.json` via GitHub raw URL
 
 The licenser (`dbox/licenser/`) tracks which version each customer is on.
+
+### Dogbox Investments
+
+Built from `dbox-investments` with `python tools/build_release.py`, which writes `dinv.zip`
+and `dinv_version.json` here (see that repo's CLAUDE.md → Versioning and Releases). Commit and
+push both together — the app polls `dinv_version.json` daily and downloads `dinv.zip`.
