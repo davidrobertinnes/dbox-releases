@@ -1,5 +1,5 @@
 {
   "url": "https://github.com/davidrobertinnes/dbox-releases/raw/main/dbox.zip",
-  "version": "2.4.1",
-  "notes": "v2.4.1 fixes Report a Bug and lets you see an account's transactions from the Chart of Accounts.\n\nReport a Bug (Settings → Help) works again. Reports had been failing with \"HTTP Error 401\"; they now go through the Dogbox licence server.\n\nChart of Accounts: click an account to see every transaction with a running balance. Pick This FY, Last FY, All or your own dates, open any journal entry, or download the list as CSV.\n\nAlso: an account's transactions from a start date with no end date no longer double-count earlier transactions."
+  "version": "2.4.2",
+  "notes": "v2.4.2 makes Report an Issue easy to find and fixes bank reconciliation CSV presets.\n\nReport an Issue is now a button at the end of the quick-nav bar on every page. It opens a short form without leaving the page and adds the page you were on to the report. Admins also get a Report an Issue tile in the Admin hub.\n\nBank reconciliation CSV import: presets now remember \"Data starts row\", and loading a preset replaces the whole mapping, so a guessed column can no longer override it. When one of your presets is selected, ↻ Update preset saves the current mapping into it.\n\nAlso: quick-nav labels no longer overlap on narrow windows, and the Getting Started guide has a new \"Reporting a Problem\" section."
 }
