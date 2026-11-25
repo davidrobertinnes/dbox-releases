@@ -1,0 +1,5 @@
+{
+  "version": "1.1.0",
+  "notes": "**Updates from inside Mailman:** Mailman now checks once a day for a new version. When there is one, a banner at the top offers to update: click **Update** and Mailman downloads it, installs it and restarts itself. Your mail, accounts and settings aren't touched, and the files being replaced are kept in the `backups` folder. Click the version number at the bottom of the sidebar to check straight away.",
+  "url": "https://github.com/davidrobertinnes/dbox-releases/raw/main/postbox.zip"
+}
